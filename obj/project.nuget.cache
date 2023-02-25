@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "t+kk/noJDL+yOXTBzU3b3r00ikKnzk932KoldKQY5wbD69n/b4f2fdqNFAFmYdMhu55VfXHwdWnF7qpGc1chNA==",
+  "success": true,
+  "projectFilePath": "/home/keerah8/Projects/EFCoreTest/EFCoreTest.csproj",
+  "expectedPackageFiles": [
+    "/home/keerah8/.nuget/packages/microsoft.aspnetcore.app.ref/7.0.2/microsoft.aspnetcore.app.ref.7.0.2.nupkg.sha512"
+  ],
+  "logs": []
+}
