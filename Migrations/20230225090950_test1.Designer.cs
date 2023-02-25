@@ -2,6 +2,7 @@
 using EFCoreTest.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,9 +10,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFCoreTest.Migrations
 {
     [DbContext(typeof(GroupBaseContext))]
-    partial class GroupBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20230225090950_test1")]
+    partial class test1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.3");
@@ -20,9 +23,6 @@ namespace EFCoreTest.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("MemberId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
@@ -56,6 +56,9 @@ namespace EFCoreTest.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("Age")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("GroupId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("InstrumentId")

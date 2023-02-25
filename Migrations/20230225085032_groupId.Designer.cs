@@ -2,6 +2,7 @@
 using EFCoreTest.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,9 +10,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFCoreTest.Migrations
 {
     [DbContext(typeof(GroupBaseContext))]
-    partial class GroupBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20230225085032_groupId")]
+    partial class groupId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.3");
@@ -20,9 +23,6 @@ namespace EFCoreTest.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("MemberId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
@@ -58,6 +58,9 @@ namespace EFCoreTest.Migrations
                     b.Property<int>("Age")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("GroupId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("InstrumentId")
                         .HasColumnType("INTEGER");
 
@@ -66,8 +69,6 @@ namespace EFCoreTest.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("InstrumentId");
 
                     b.ToTable("Members");
                 });
@@ -85,17 +86,6 @@ namespace EFCoreTest.Migrations
                     b.HasIndex("MembersId");
 
                     b.ToTable("GroupMember");
-                });
-
-            modelBuilder.Entity("EFCoreTest.Entities.Member", b =>
-                {
-                    b.HasOne("EFCoreTest.Entities.Instrument", "Instrument")
-                        .WithMany()
-                        .HasForeignKey("InstrumentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Instrument");
                 });
 
             modelBuilder.Entity("GroupMember", b =>
