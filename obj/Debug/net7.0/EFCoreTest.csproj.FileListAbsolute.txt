@@ -121,3 +121,4 @@
 /Users/kseniabelaevskaa/Projects/EFCoreTest/obj/Debug/net7.0/EFCoreTest.genruntimeconfig.cache
 /Users/kseniabelaevskaa/Projects/EFCoreTest/obj/Debug/net7.0/ref/EFCoreTest.dll
 /Users/kseniabelaevskaa/Projects/EFCoreTest/bin/Debug/net7.0/Microsoft.Extensions.Configuration.dll
+/home/keerah8/Projects/EFCoreTest/bin/Debug/net7.0/Microsoft.Extensions.Configuration.dll

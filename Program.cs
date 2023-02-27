@@ -1,7 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using EFCoreTest.Context;
 using EFCoreTest.Entities;
-
+using System.Linq;
 internal class Program
 {
     private static void Main(string[] args)
@@ -24,8 +24,12 @@ internal class Program
             //Context.Members.Add(member1);
             //Context.Members.Remove(Context.Members.Where(m => m.Id == 3).Single());
             //Context.Members.Remove(Context.Members.Where(m => m.Name.Contains("Terrorizer")).Single());
-            var zobr = Context.Members.Where(m=>m.Groups.Where(g=>g.Id==2).Single())
+            var vrongband = Context.Groups.Where(g=>g.Id==2).Single();
+            Context.Groups.Remove(vrongband);
             Context.SaveChanges();
+            var afterband = Context.Groups.Where(g=>g.Name.Contains("Aft")).Single();
+            var aftrmem = Context.Members.Where(m => m.Groups.Contains(afterband)).Single();
+            System.Console.WriteLine($"{aftrmem.Name} {aftrmem.Groups.Count} group");
         }
     }
 }
