@@ -10,7 +10,7 @@ namespace EFCoreTest.Entities
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public virtual Instrument Instrument { get; set; }
+        public virtual ICollection<Instrument> Instruments { get; set; } = new List<Instrument>();
         public int Age { get; set; }
         public virtual ICollection<Group> Groups { get; set; }
     }

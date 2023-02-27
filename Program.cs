@@ -8,16 +8,23 @@ internal class Program
     {
         using (var Context = new GroupBaseContext())
         {
-            var member1 = new Member(){
-                Name = "Terrorizer",
-                Age = 31,
-                Instrument = new Instrument {Name = "Drums"},
-                Groups = new List<Group>() {new Group() {Name = "Afterburner"}}
+            var drum = new Instrument() { Name = "Vocal" };
+            var member1 = new Member()
+            {
+                Name = "Zobr",
+                Age = 29,
+                Instruments = new List<Instrument>() { drum },
+                Groups = new List<Group>() { Context.Groups.Where(g=>g.Name=="Afterburner").FirstOrDefault() }
             };
-            
-            var forDel = Context.Members.Where(mem => mem.Name.Contains("Terr")).ToList();
 
-            Context.Members.RemoveRange(forDel);
+            //Context.Groups.RemoveRange(Context.Groups.Where(g => g.Id < 3).ToList());
+            //Context.Instruments.RemoveRange(
+            //    Context.Instruments.Where(i=>i.Id <3).ToList()
+            //    );
+            //Context.Members.Add(member1);
+            //Context.Members.Remove(Context.Members.Where(m => m.Id == 3).Single());
+            //Context.Members.Remove(Context.Members.Where(m => m.Name.Contains("Terrorizer")).Single());
+            var zobr = Context.Members.Where(m=>m.Groups.Where(g=>g.Id==2).Single())
             Context.SaveChanges();
         }
     }

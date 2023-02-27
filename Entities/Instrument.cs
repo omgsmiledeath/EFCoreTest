@@ -9,7 +9,7 @@ namespace EFCoreTest.Entities
     {
         public int Id { get; set; }
         public string Name { get; set; }
-
+        public ICollection<Member> Members = new List<Member>();
         
     }
 }

@@ -2,6 +2,7 @@
 using EFCoreTest.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,9 +10,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFCoreTest.Migrations
 {
     [DbContext(typeof(GroupBaseContext))]
-    partial class GroupBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20230226071638_addRelations")]
+    partial class addRelations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.3");
@@ -20,6 +23,9 @@ namespace EFCoreTest.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("MemberId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
@@ -38,6 +44,7 @@ namespace EFCoreTest.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -54,10 +61,16 @@ namespace EFCoreTest.Migrations
                     b.Property<int>("Age")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("InstrumentId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("InstrumentId");
 
                     b.ToTable("Members");
                 });
@@ -77,19 +90,15 @@ namespace EFCoreTest.Migrations
                     b.ToTable("GroupMember");
                 });
 
-            modelBuilder.Entity("InstrumentMember", b =>
+            modelBuilder.Entity("EFCoreTest.Entities.Member", b =>
                 {
-                    b.Property<int>("InstrumentsId")
-                        .HasColumnType("INTEGER");
+                    b.HasOne("EFCoreTest.Entities.Instrument", "Instrument")
+                        .WithMany()
+                        .HasForeignKey("InstrumentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Property<int>("MembersId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("InstrumentsId", "MembersId");
-
-                    b.HasIndex("MembersId");
-
-                    b.ToTable("InstrumentMember");
+                    b.Navigation("Instrument");
                 });
 
             modelBuilder.Entity("GroupMember", b =>
@@ -97,21 +106,6 @@ namespace EFCoreTest.Migrations
                     b.HasOne("EFCoreTest.Entities.Group", null)
                         .WithMany()
                         .HasForeignKey("GroupsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EFCoreTest.Entities.Member", null)
-                        .WithMany()
-                        .HasForeignKey("MembersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("InstrumentMember", b =>
-                {
-                    b.HasOne("EFCoreTest.Entities.Instrument", null)
-                        .WithMany()
-                        .HasForeignKey("InstrumentsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

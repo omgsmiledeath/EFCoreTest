@@ -1,25 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "/home/keerah8/Projects/EFCoreTest/EFCoreTest.csproj": {}
+    "/Users/kseniabelaevskaa/Projects/EFCoreTest/EFCoreTest.csproj": {}
   },
   "projects": {
-    "/home/keerah8/Projects/EFCoreTest/EFCoreTest.csproj": {
+    "/Users/kseniabelaevskaa/Projects/EFCoreTest/EFCoreTest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/keerah8/Projects/EFCoreTest/EFCoreTest.csproj",
+        "projectUniqueName": "/Users/kseniabelaevskaa/Projects/EFCoreTest/EFCoreTest.csproj",
         "projectName": "EFCoreTest",
-        "projectPath": "/home/keerah8/Projects/EFCoreTest/EFCoreTest.csproj",
-        "packagesPath": "/home/keerah8/.nuget/packages/",
-        "outputPath": "/home/keerah8/Projects/EFCoreTest/obj/",
+        "projectPath": "/Users/kseniabelaevskaa/Projects/EFCoreTest/EFCoreTest.csproj",
+        "packagesPath": "/Users/kseniabelaevskaa/.nuget/packages/",
+        "outputPath": "/Users/kseniabelaevskaa/Projects/EFCoreTest/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/keerah8/.nuget/NuGet/NuGet.Config"
+          "/Users/kseniabelaevskaa/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
+          "/usr/local/share/dotnet/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -38,6 +39,16 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
             "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
               "version": "[7.0.3, )"
@@ -47,6 +58,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[7.0.3, )"
+            },
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[7.0.0, )"
             }
           },
           "imports": [
@@ -60,18 +75,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[7.0.2, 7.0.2]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.102/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.103/RuntimeIdentifierGraph.json"
         }
       }
     }
