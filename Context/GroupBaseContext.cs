@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using EFCoreTest.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.EntityFrameworkCore.Proxies;
 namespace EFCoreTest.Context
 {
     public class GroupBaseContext:DbContext
@@ -16,7 +18,9 @@ namespace EFCoreTest.Context
         protected override void OnConfiguring(DbContextOptionsBuilder optionBuilder)
         {
             //optionBuilder.UseSqlite(@"Data Source = /Users/kseniabelaevskaa/Projects/EFCoreTest/EFcoreBase.db;");
-            optionBuilder.UseSqlite(@"Data Source = /home/keerah8/Projects/EFCoreTest/EFcoreBase.db");
+            optionBuilder.
+            //UseLazyLoadingProxies().
+            UseSqlite(@"Data Source = /home/keerah8/Projects/EFCoreTest/EFcoreBase.db");
         }
        
         protected override void OnModelCreating(ModelBuilder modelBuilder)

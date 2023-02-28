@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using EFCoreTest.Context;
 using EFCoreTest.Entities;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 internal class Program
 {
@@ -8,14 +9,7 @@ internal class Program
     {
         using (var Context = new GroupBaseContext())
         {
-            var drum = new Instrument() { Name = "Vocal" };
-            var member1 = new Member()
-            {
-                Name = "Zobr",
-                Age = 29,
-                Instruments = new List<Instrument>() { drum },
-                Groups = new List<Group>() { Context.Groups.Where(g=>g.Name=="Afterburner").FirstOrDefault() }
-            };
+            
 
             //Context.Groups.RemoveRange(Context.Groups.Where(g => g.Id < 3).ToList());
             //Context.Instruments.RemoveRange(
@@ -31,8 +25,8 @@ internal class Program
             //     Context.SaveChanges();
             // }
             var afterband = Context.Groups.Where(g=>g.Name.Contains("Afterburner")).Single();
-            
-            var zobr = Context.Members.Where(member=>member.Name == "Zobr").Join().Single();
+            var members = Context.Members.Include(member => member.Groups).ToList();
+            var zobr = members.Where(member=>member.Name == "Zobr").Single();
             
             //zobr.Groups.Add(new Group(){Name = "Wimb"});
             //afterband.Members.Add(zobr);
