@@ -24,12 +24,20 @@ internal class Program
             //Context.Members.Add(member1);
             //Context.Members.Remove(Context.Members.Where(m => m.Id == 3).Single());
             //Context.Members.Remove(Context.Members.Where(m => m.Name.Contains("Terrorizer")).Single());
-            var vrongband = Context.Groups.Where(g=>g.Id==2).Single();
-            Context.Groups.Remove(vrongband);
-            Context.SaveChanges();
-            var afterband = Context.Groups.Where(g=>g.Name.Contains("Aft")).Single();
-            var aftrmem = Context.Members.Where(m => m.Groups.Contains(afterband)).Single();
-            System.Console.WriteLine($"{aftrmem.Name} {aftrmem.Groups.Count} group");
+            // var vrongband = Context.Groups.Where(g=>g.Id==2).SingleOrDefault();
+            // if (vrongband!=null) 
+            // {
+            //     Context.Groups.Remove(vrongband);
+            //     Context.SaveChanges();
+            // }
+            var afterband = Context.Groups.Where(g=>g.Name.Contains("Afterburner")).Single();
+            
+            var zobr = Context.Members.Where(member=>member.Name == "Zobr").Join().Single();
+            
+            //zobr.Groups.Add(new Group(){Name = "Wimb"});
+            //afterband.Members.Add(zobr);
+            //Context.SaveChanges();
+            System.Console.WriteLine($"{zobr.Name} {zobr.Groups.Count} group");
         }
     }
 }

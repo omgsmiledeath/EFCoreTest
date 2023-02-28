@@ -16,7 +16,7 @@ namespace EFCoreTest.Context
         protected override void OnConfiguring(DbContextOptionsBuilder optionBuilder)
         {
             //optionBuilder.UseSqlite(@"Data Source = /Users/kseniabelaevskaa/Projects/EFCoreTest/EFcoreBase.db;");
-            optionBuilder.UseSqlite(@"Data Source = EFcoreBase.db");
+            optionBuilder.UseSqlite(@"Data Source = /home/keerah8/Projects/EFCoreTest/EFcoreBase.db");
         }
        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
